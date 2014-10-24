@@ -42,6 +42,29 @@ second_loop:
 exit_loop:
 	lw $a0, 8($sp)
 	lw $a1, 12($sp)
+
+sum:
+	subi $sp, $sp, 124
+	sw $ra, 0($sp)
+	sw $fp, 4($sp)
+	
+	li $t2, 0		#total
+	
+	li $t0, 10
+	li $t1, 0
+	
+sum_loop:
+	beq $t1, $t0, sum_exit 
+	
+	lw $t4, ($a0)
+	lw $t5, ($a1)
+
+	
+	
+sum_exit:
+	
+	
+	
 	
 	
 	
