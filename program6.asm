@@ -8,11 +8,11 @@ main:
 	addi $fp, $sp, 120
 
 	
-	li $t0, 120		#memory address of x
-	li $t1, 80		#memory address of y
+	#li $t0, 120		#memory address of x
+	#li $t1, 80		#memory address of y
 	
-	sw $t0, 8($sp)
-	sw $t1, 12($sp)
+	#sw $t0, 8($sp)
+	#sw $t1, 12($sp)
 	
 	li $t0, 10		#size
 	li $t1, 0		#index
@@ -40,9 +40,9 @@ second_loop:
 	j second_loop
 	
 exit_loop:
-	lw $a0, 8($sp)
-	lw $a1, 12($sp)
-
+	la $a0, ($fp)
+	la $a1, 40($fp)
+	
 sum:
 	subi $sp, $sp, 124
 	sw $ra, 0($sp)
@@ -56,8 +56,11 @@ sum:
 sum_loop:
 	beq $t1, $t0, sum_exit 
 	
-	lw $t4, ($a0)
-	lw $t5, ($a1)
+	lw $t3, 4($a0)
+	lw $t5, 4($a1)
+	
+	
+	
 
 	
 	
