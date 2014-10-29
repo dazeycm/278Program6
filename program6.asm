@@ -95,7 +95,7 @@ sum:
 	li $t2, 0		#total
 	
 	move $t3, $a0
-	move $t4, $a0
+	move $t4, $a1
 	
 sum_loop:
 	beq $t1, $t0, sum_exit 
