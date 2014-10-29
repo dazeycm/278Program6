@@ -10,12 +10,14 @@ main:
 	li $t0, 10		#size
 	li $t1, 0		#index
 	
+	move $t4, $fp		#can't change the $fp, so lets just move it's value into a register
+	
 loop:
 	beq $t1, $t0, before_second_loop
 	
-	sw $t1, ($fp)
+	sw $t1, ($t4)
 	addi $t1, $t1, 1
-	subi $fp, $fp, 4
+	subi $t4, $t4, 4
 	
 	j loop
 	
@@ -26,15 +28,16 @@ before_second_loop:
 second_loop:
 	beq $t1, $t0, exit_loop
 	
-	sw $t1, ($fp)
+	sw $t1, ($t4)
 	addi $t1, $t1, 1
-	subi $fp, $fp, 4
+	subi $t4, $t4, 4
 	
 	j second_loop
 	
 exit_loop:
-	la $a0, ($fp)
-	la $a1, 40($fp)
+	la $a0, ($t4)
+	addi $t4, $t4, 40  
+	la $a1, ($t4)
 	
 	jal sum
 	
